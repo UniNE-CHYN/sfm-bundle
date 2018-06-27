@@ -11,3 +11,6 @@
 [submodule "src/VCG"]
 	path = src/VCG
 	url = git@github.com:cdcseacave/VCG.git
+[submodule "src/cgal"]
+	path = src/cgal
+	url = git@github.com:CGAL/cgal.git

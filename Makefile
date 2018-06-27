@@ -1,6 +1,10 @@
 COLMAP := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/bin/colmap
 OPENMVS := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/bin/OpenMVS
 images := $(wildcard images/im-*.jpg)
+LD_LIBRARY_PATH := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/lib
+
+.EXPORT_ALL_VARIABLES:
+
 
 colmap.db: $(images)
 	$(COLMAP) feature_extractor --database_path colmap1.db --image_path images-nobg/ --SiftExtraction.use_gpu=0
@@ -16,6 +20,7 @@ sparse/0/cameras.bin sparse/0/images.bin sparse/0/points3D.bin sparse/0/project.
 openmvs/model.nvm: sparse/0/cameras.bin sparse/0/images.bin sparse/0/points3D.bin sparse/0/project.ini
 	mkdir -p openmvs
 	$(COLMAP) model_converter --input_path sparse/0/  --output_path openmvs/model1.nvm --output_type NVM 
+	sleep 1
 	sed  "4,$(shell expr 3 + `sed -n 3p openmvs/model1.nvm`)s/^/..\/images\//" openmvs/model1.nvm > openmvs/model.nvm
 	
 openmvs/model.mvs: openmvs/model.nvm
