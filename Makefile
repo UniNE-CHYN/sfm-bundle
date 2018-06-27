@@ -20,8 +20,7 @@ sparse/0/cameras.bin sparse/0/images.bin sparse/0/points3D.bin sparse/0/project.
 openmvs/model.nvm: sparse/0/cameras.bin sparse/0/images.bin sparse/0/points3D.bin sparse/0/project.ini
 	mkdir -p openmvs
 	$(COLMAP) model_converter --input_path sparse/0/  --output_path openmvs/model1.nvm --output_type NVM 
-	sleep 1
-	sed  "4,$(shell expr 3 + `sed -n 3p openmvs/model1.nvm`)s/^/..\/images\//" openmvs/model1.nvm > openmvs/model.nvm
+	sed  "4,`expr 3 + \`sed -n 3p openmvs/model1.nvm\``s/^/..\/images\//" openmvs/model1.nvm > openmvs/model.nvm
 	
 openmvs/model.mvs: openmvs/model.nvm
 	$(OPENMVS)/InterfaceVisualSFM -w openmvs/ -i model.nvm 
