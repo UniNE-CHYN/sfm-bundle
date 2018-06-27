@@ -1,0 +1,13 @@
+[submodule "src/colmap"]
+	path = src/colmap
+	url = git@github.com:lfasnacht/colmap.git
+	branch = dev
+[submodule "src/openMVS"]
+	path = src/openMVS
+	url = git@github.com:cdcseacave/openMVS.git
+[submodule "src/eigen"]
+	path = src/eigen
+	url = git@github.com:eigenteam/eigen-git-mirror.git
+[submodule "src/VCG"]
+	path = src/VCG
+	url = git@github.com:cdcseacave/VCG.git
