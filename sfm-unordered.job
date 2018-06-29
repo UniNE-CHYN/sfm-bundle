@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH --exclusive -t 1-00:00:00 --mem=230G -p any
+#SBATCH -t 1-00:00:00 --mem=230G -p any
 
-SFMBUNDLE="$OLDPWD"
+SFMBUNDLE=`dirname \`squeue -ho '%o' -j$SLURM_JOB_ID|cut -f1 -d' '\``
 
 cd $1
 make -f $SFMBUNDLE/Makefile.unordered openmvs/model_dense_mesh_refine_texture.mvs
