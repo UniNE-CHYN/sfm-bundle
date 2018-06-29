@@ -1,7 +1,0 @@
-#!/bin/bash
-
-#SBATCH --exclusive -t 1-00:00:00 --mem=230G -p any
-
-cd $1
-make -f ~/git/sfm-bundle/Makefile openmvs/model_dense_mesh_refine_texture.mvs
-

@@ -8,8 +8,7 @@ LD_LIBRARY_PATH := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/lib
 
 colmap.db: $(images)
 	$(COLMAP) feature_extractor --database_path colmap1.db --image_path images-nobg/ --SiftExtraction.use_gpu=0
-	#$(COLMAP) exhaustive_matcher --database_path colmap1.db --SiftMatching.use_gpu=0
-	$(COLMAP) sequential_matcher --database_path colmap1.db --SiftMatching.use_gpu=0
+	$(COLMAP) exhaustive_matcher --database_path colmap1.db --SiftMatching.use_gpu=0
 	mv colmap1.db colmap.db
 	
 sparse/0/cameras.bin sparse/0/images.bin sparse/0/points3D.bin sparse/0/project.ini: colmap.db

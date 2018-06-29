@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#SBATCH --exclusive -t 1-00:00:00 --mem=230G -p any
+
+SFMBUNDLE="$OLDPWD"
+
+cd $1
+make -f $SFMBUNDLE/Makefile.unordered openmvs/model_dense_mesh_refine_texture.mvs
+
